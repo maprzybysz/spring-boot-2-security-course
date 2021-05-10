@@ -10,7 +10,7 @@ public class TestApi {
 
     @GetMapping("/forAll")
     public String forAll(){
-        return "you have been logout";
+        return "Cześć nieznajomy";
     }
     @GetMapping("/forUser")
     public String forUser(Principal principal){
@@ -19,5 +19,9 @@ public class TestApi {
     @GetMapping("/forAdmin")
     public String forAdmin(Principal principal){
         return "forAdmin "+principal.getName();
+    }
+    @GetMapping("/logoutSuccessful")
+    public String logout(){
+        return "logged out successfully";
     }
 }
