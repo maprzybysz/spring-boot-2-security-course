@@ -34,5 +34,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().withUser(userUser);
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/forAdmin").hasRole("ADMIN")
+                .antMatchers("/forUser").hasRole("USER");
+    }
 
 }
