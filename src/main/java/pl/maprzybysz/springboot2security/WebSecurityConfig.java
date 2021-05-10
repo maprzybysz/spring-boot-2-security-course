@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "ROLE_ADMIN")));
         User userUser = new User("Karol", getPasswordEncoder().encode("Karol123"),
                 Collections.singleton(new SimpleGrantedAuthority(
-                        "ROLE_User")));
+                        "ROLE_USER")));
 
         auth.inMemoryAuthentication().withUser(userAdmin);
         auth.inMemoryAuthentication().withUser(userUser);
@@ -38,7 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/forAdmin").hasRole("ADMIN")
-                .antMatchers("/forUser").hasRole("USER");
+                .antMatchers("/forUser").hasRole("USER")
+                .and().formLogin().permitAll()
+                .and().logout().logoutSuccessUrl("/forAll");
     }
 
 }
