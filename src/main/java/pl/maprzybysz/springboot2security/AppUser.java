@@ -19,6 +19,7 @@ public class AppUser  implements UserDetails {
     private Long id;
     private String username;
     private String password;
+    private boolean isEnabled;
 
     public AppUser() {
     }
@@ -41,6 +42,10 @@ public class AppUser  implements UserDetails {
         return username;
     }
 
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -58,7 +63,7 @@ public class AppUser  implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 
     public void setUsername(String username) {

@@ -4,19 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MainController {
 
-    private AppUserRepo appUserRepo;
-    private PasswordEncoder passwordEncoder;
+    private UserService userService;
 
     @Autowired
-    public MainController(AppUserRepo appUserRepo, PasswordEncoder passwordEncoder) {
-        this.appUserRepo = appUserRepo;
-        this.passwordEncoder = passwordEncoder;
+    public MainController(UserService userService) {
+        this.userService = userService;
     }
+
+
+
 
     @RequestMapping("/login")
     public String login(){
@@ -27,9 +32,14 @@ public class MainController {
         return new ModelAndView("registration", "user", new AppUser());
     }
     @RequestMapping("/register")
-    public ModelAndView register(AppUser user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        appUserRepo.save(user);
+    public ModelAndView register(AppUser user, HttpServletRequest request) throws MessagingException {
+        userService.addNewUser(user, request);
         return new ModelAndView("redirect:/login");
+    }
+    @RequestMapping("/verifyToken")
+    public ModelAndView verifyToken(@RequestParam String token){
+        userService.verifyToken(token);
+        return new ModelAndView("redirect:/login");
+
     }
 }
