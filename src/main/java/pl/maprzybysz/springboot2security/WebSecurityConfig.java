@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/logout").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/signup").permitAll()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/forUser").permitAll()
-                .and().logout().logoutSuccessUrl("/logoutSuccessful");
+                .and().logout().logoutSuccessUrl("/logoutSuccessful").and().rememberMe().tokenValiditySeconds(86400).rememberMeCookieName("remember");
     }
 
 }

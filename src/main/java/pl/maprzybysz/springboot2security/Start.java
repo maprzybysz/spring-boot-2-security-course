@@ -18,6 +18,7 @@ public class Start {
         AppUser appUser = new AppUser();
         appUser.setUsername("Mateusz");
         appUser.setPassword(passwordEncoder.encode("Mateusz123"));
+        appUser.setEnabled(true);
         appUserRepo.save(appUser);
     }
 
