@@ -1,4 +1,4 @@
-package pl.maprzybysz.springboot2security;
+package pl.maprzybysz.springboot2security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
