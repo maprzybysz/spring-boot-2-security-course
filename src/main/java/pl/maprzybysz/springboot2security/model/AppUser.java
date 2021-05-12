@@ -1,4 +1,4 @@
-package pl.maprzybysz.springboot2security;
+package pl.maprzybysz.springboot2security.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

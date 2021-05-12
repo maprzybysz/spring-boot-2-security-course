@@ -1,9 +1,15 @@
-package pl.maprzybysz.springboot2security;
+package pl.maprzybysz.springboot2security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.maprzybysz.springboot2security.model.AdminToken;
+import pl.maprzybysz.springboot2security.model.AppUser;
+import pl.maprzybysz.springboot2security.model.VerificationToken;
+import pl.maprzybysz.springboot2security.repository.AdminTokenRepo;
+import pl.maprzybysz.springboot2security.repository.AppUserRepo;
+import pl.maprzybysz.springboot2security.repository.VerificationTokenRepo;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
