@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Entity
 public class AppUser  implements UserDetails {
@@ -20,6 +21,8 @@ public class AppUser  implements UserDetails {
     private String username;
     private String password;
     private boolean isEnabled;
+    private boolean isAdmin;
+    private GrantedAuthority authority;
 
     public AppUser() {
     }
@@ -44,6 +47,14 @@ public class AppUser  implements UserDetails {
 
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
     @Override
@@ -72,7 +83,11 @@ public class AppUser  implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+        return Collections.singleton(authority);
+    }
+
+    public void setAuthority(GrantedAuthority authority) {
+        this.authority = authority;
     }
 
     public String getPassword() {

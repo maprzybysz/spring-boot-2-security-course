@@ -3,6 +3,9 @@ package pl.maprzybysz.springboot2security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,7 +31,7 @@ public class MainController {
         return "login";
     }
     @RequestMapping("/signup")
-    public ModelAndView singup(){
+    public ModelAndView signup(){
         return new ModelAndView("registration", "user", new AppUser());
     }
     @RequestMapping("/register")
@@ -39,6 +42,12 @@ public class MainController {
     @RequestMapping("/verifyToken")
     public ModelAndView verifyToken(@RequestParam String token){
         userService.verifyToken(token);
+        return new ModelAndView("redirect:/login");
+
+    }
+    @RequestMapping("/verifyAdmin")
+    public ModelAndView verifyAdmin(@RequestParam String token){
+        userService.verifyAdminToken(token);
         return new ModelAndView("redirect:/login");
 
     }

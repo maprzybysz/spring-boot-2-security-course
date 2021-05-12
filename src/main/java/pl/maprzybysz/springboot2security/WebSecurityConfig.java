@@ -46,14 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/logout").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/signup").permitAll()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/forUser").permitAll()
-                .and().logout().logoutSuccessUrl("/logoutSuccessful").and().rememberMe().tokenRepository(persistentTokenRepository());
+                .and().logout().logoutSuccessUrl("/logoutSuccessful").and().rememberMe();
     }
 
-    @Bean
-    public PersistentTokenRepository persistentTokenRepository(){
-        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
-        tokenRepository.setDataSource(dataSource);
-        return tokenRepository;
-    }
+
 
 }
