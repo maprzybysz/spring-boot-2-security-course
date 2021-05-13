@@ -6,24 +6,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api/books")
 public class BookApi {
-
     private List<String> bookList;
 
     public BookApi() {
         this.bookList = new ArrayList<>();
-        bookList.add("Spring Boot 2");
-        bookList.add("Jaś i Małgosia");
+        bookList.add("Book 1");
+        bookList.add("Book 2");
+        bookList.add("Book 3");
     }
 
     @GetMapping
-    public List<String> getBookList() {
+    public List<String> getBookList(){
         return bookList;
     }
-
     @PostMapping
-    public void setBookList(@RequestBody String book) {
+    public void addBook(@RequestBody String book){
         bookList.add(book);
     }
 }
