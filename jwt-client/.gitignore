@@ -31,10 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-/.mvn/
-/mvnw
-/mvnw.cmd
-/.idea/
-/jwt-client/.mvn/
-/jwt-client/mvnw
-/jwt-client/mvnw.cmd
